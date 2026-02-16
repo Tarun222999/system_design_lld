@@ -1,0 +1,67 @@
+STRATEGY PATTERN - DATA EXPORT SYSTEM
+=====================================
+
+SCENARIO:
+Build a report generation system where users can export data in different formats
+(CSV, PDF, JSON, Excel) without modifying the core exporter logic.
+
+PROBLEM:
+- Different export formats have different processing logic
+- Adding new formats shouldn't require changing existing code
+- The export logic should be interchangeable at runtime
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+REQUIREMENTS:
+1. Create an interface/strategy for export formats
+2. Implement concrete export strategies:
+   - CSVExporter: Exports data as CSV format
+   - PDFExporter: Exports data as PDF format
+   - JSONExporter: Exports data as JSON format
+   - ExcelExporter: Exports data as Excel format
+
+3. Create a ReportGenerator/Exporter class that:
+   - Accepts an export strategy
+   - Can switch strategies at runtime
+   - Uses the strategy to export data
+
+4. In Main class, demonstrate:
+   - Creating different exporters
+   - Switching export formats dynamically
+   - Generating reports in different formats
+
+BENEFITS:
+- Easy to add new export formats without modifying existing code
+- Runtime flexibility to change export format
+- Each export strategy is independent
+- Follows Open/Closed Principle
+
+STRUCTURE:
+strategeypattern2/
+├── Main.java
+├── strategy/
+│   └── ExportStrategy.java
+├── concrete/
+│   ├── CSVExporter.java
+│   ├── PDFExporter.java
+│   ├── JSONExporter.java
+│   └── ExcelExporter.java
+└── processor/
+    └── ReportGenerator.java

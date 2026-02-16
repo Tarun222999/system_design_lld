@@ -1,0 +1,17 @@
+Problem
+
+Design a Configuration Manager for an application.
+
+Requirements
+
+- There should be only one instance of the configuration manager.
+- It should load configuration values once.
+- All parts of the application should access the same instance.
+- It must be thread-safe.
+- The configuration manager should expose this method:
+  `String getValue(String key)`
+
+Constraints
+
+- Assume multiple threads may access it.
+- You do not need to actually read from a file; mock config storage is fine.

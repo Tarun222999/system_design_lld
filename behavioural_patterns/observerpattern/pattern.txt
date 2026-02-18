@@ -1,0 +1,38 @@
+there is a observer that will propogate the change to the subscribers
+
+
+observer interface - this is the interace that reacts to the changes
+concrete observer class - this implements the observer how we excatly notify the change
+subject interface -the utubechannel needs to keep track of all its subscribers and notify
+when something changes
+
+concret subject class -implement subject interface
+
+
+
+observer interface - subscriber
+concrete observer - what each subscriber should be notified
+subject interface publisher
+concrete subject class - what each publisher should do 
+
+A YouTube channel (subject) and subscribers (observers):
+
+Subscribers register to the channel.
+New video uploaded -> channel notifies all subscribers
+
+The Observer Pattern is a behavioral design pattern where:
+
+One object (the Subject) holds state.
+    Many objects (the Observers) want to know when that state changes.
+    When state changes, the Subject notifies all observers automatically.
+Core pieces
+    Subject / Publisher
+        Keeps a list of observers
+        Methods like attach(), detach(), notifyObservers()
+Observer / Subscriber
+    Defines an update() method
+    Gets called when the subject changes
+Why use it
+Decouples sender and receivers (subject doesn’t need to know observer internals)
+Easy to add/remove listeners at runtime
+Common in event systems, UI, notifications, stock price updates, etc.

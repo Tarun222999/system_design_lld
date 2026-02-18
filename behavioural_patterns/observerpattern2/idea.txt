@@ -1,0 +1,76 @@
+Observer Pattern Requirement Idea: Live Cricket Score Alerts
+
+Goal
+Build a notification system where users subscribe to a live cricket match and receive updates whenever key match events happen.
+
+Domain Story
+- A match object (publisher/subject) maintains live state: score, wickets, overs, and match status.
+- Different user apps (subscribers/observers) want updates in different ways.
+- When a major event occurs, all registered subscribers are notified.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Core Requirements
+1. Create a Subject interface with methods:
+   - addSubscriber(Subscriber subscriber)
+   - removeSubscriber(Subscriber subscriber)
+   - notifySubscribers()
+
+2. Create an Observer interface with one method:
+   - update(MatchEvent event)
+
+3. Implement a concrete subject `CricketMatch` that stores:
+   - matchId
+   - team names
+   - current score summary
+   - list of subscribers
+
+4. Define a `MatchEvent` model containing:
+   - eventType (SCORE_UPDATE, WICKET, OVER_COMPLETE, INNINGS_END, MATCH_END)
+   - message
+   - timestamp
+   - optional score fields
+
+5. Implement at least 3 concrete subscribers:
+   - MobilePushSubscriber
+   - EmailSubscriber
+   - CommentaryConsoleSubscriber
+
+6. Notification rule:
+   - notifySubscribers() should be triggered only for major events (wicket, over complete, innings end, match end).
+   - minor ball-by-ball events should not notify all subscribers.
+
+7. Runtime behavior:
+   - Subscribers can be added/removed while match is in progress.
+   - Removed subscribers must stop receiving updates immediately.
+
+8. Demo in Main:
+   - Create one match.
+   - Register multiple subscribers.
+   - Publish a sequence of events.
+   - Remove one subscriber mid-way.
+   - Continue events and show only active subscribers receive updates.
+
+Optional Extensions
+- Let subscribers choose event preferences (e.g., only wickets + match end).
+- Add throttling for email subscribers.
+- Add a second match to show independent publisher instances.
+
+Acceptance Criteria
+- Observer pattern roles are clearly separated.
+- No concrete subscriber logic is hardcoded inside `CricketMatch`.
+- Adding a new subscriber type should not require changing subject logic.

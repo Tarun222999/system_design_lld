@@ -1,0 +1,16 @@
+let say u have couple of actions -> club them into command 
+use the command whenever required
+
+commnd interface execute method
+conrete command
+reciever that does actually work
+invoker (triggers command)
+
+
+so there is a command interface + now there is implementation for this interface which purpose is to call a receiver where the real task desires now there is a invoker which uses the implementation to execute the reciever without knowing whats inside the reciever (filesystem class + openfile) is the task now we are wrapping it as command in OpenFileCommand  which can implemented in button that is elsewhere
+
+Invoker (Button)
+      ↓
+Command (OpenFileCommand)
+      ↓
+Receiver (FileSystem)

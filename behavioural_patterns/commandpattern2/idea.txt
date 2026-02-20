@@ -1,0 +1,17 @@
+In a text editor, users can:
+
+Insert text
+
+Delete text
+
+Replace text
+
+Each of these:
+
+Changes state
+
+Should be undoable
+
+So the key question becomes:
+
+How do we model user actions so we can undo them later?

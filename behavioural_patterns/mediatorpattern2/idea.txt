@@ -1,0 +1,46 @@
+# Smart Home Mediator Idea
+
+**Devices in the system:**
+- Light
+- Fan
+- AC
+- Alarm
+- Door Lock
+
+> Devices should **NOT** communicate directly with each other.
+
+## Coordination Requirements
+When certain events happen, the mediator must trigger coordinated actions:
+
+- **Alarm is triggered:**
+  - Turn on all lights
+  - Lock all doors
+  - Turn off AC
+
+- **User leaves (home mode activated):**
+  - Turn off lights
+  - Turn off fan
+  - Turn off AC
+  - Lock doors
+
+- **User enters (home mode):**
+  - Unlock doors
+  - Turn on lights
+
+> Devices should not know:
+> - Which other devices exist
+> - What logic connects them
+
+A central controller (mediator) should manage the coordination logic.
+
+
+Constraints:
+    Adding a new device (e.g., Heater) should not require modifying all other devices.
+    Devices should only communicate through a central component.
+
+What You Should Design:
+    Device interface
+    Concrete devices
+    Central coordination component
+    How events are handled
+    How commands are triggered

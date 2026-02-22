@@ -1,0 +1,94 @@
+State Pattern Requirement Idea: Vending Machine
+
+Goal
+Design a vending machine where behavior changes based on its current state.
+
+Scenario
+A vending machine sells snacks. Users can insert money, select item, dispense item, and request refund.
+The machine behavior must vary depending on state.
+
+States to Implement
+1. IdleState
+- No money inserted yet.
+- Allowed: insertMoney(amount)
+- Not allowed: selectItem(itemCode), dispense(), refund()
+
+2. HasMoneyState
+- Money is inserted but item not selected.
+- Allowed: insertMoney(amount), selectItem(itemCode), refund()
+- Not allowed: dispense()
+
+3. DispensingState
+- Item is being dispensed.
+- Allowed internally: dispense()
+- User actions should be rejected until dispensing completes.
+
+4. OutOfStockState
+- Machine has zero inventory overall OR selected item out of stock.
+- Allowed: refund() (if balance > 0)
+- All purchase actions should be rejected.
+
+
+
+
+
+
+
+
+Context Class
+Create `VendingMachineContext` with:
+- currentState
+- inventory map (itemCode -> quantity)
+- balance
+- selectedItem
+
+Required Operations
+- insertMoney(int amount)
+- selectItem(String itemCode)
+- dispense()
+- refund()
+- setState(VendingMachineState nextState)
+
+Rules
+- If selected item price > balance, stay in HasMoneyState and show "insufficient balance".
+- If selected item unavailable, transition to OutOfStockState.
+- On successful dispense:
+  - decrement inventory
+  - deduct price from balance
+  - if balance remains, stay/return to HasMoneyState; else go IdleState
+- `refund()` returns full balance and transitions to IdleState.
+
+Interfaces
+1. `VendingMachineState` interface methods:
+- void insertMoney(VendingMachineContext context, int amount)
+- void selectItem(VendingMachineContext context, String itemCode)
+- void dispense(VendingMachineContext context)
+- void refund(VendingMachineContext context)
+
+Demo in Main
+- Initialize machine with at least 2 items.
+- Show valid flow: insert -> select -> dispense.
+- Show insufficient balance case.
+- Show out-of-stock case.
+- Show refund flow.
+
+Acceptance Criteria
+- No large if-else chain in context for behavior decisions.
+- State classes contain behavior logic.
+- Transitions are explicit and easy to follow.
+- Adding a new state (e.g., MaintenanceState) should be straightforward.
+
+
+
+/*
+
+what are the states
+
+below are the states 
+addamount,selectitem,dispense,refuns
+
+if these are the states then is the interface is correct??
+
+select item -> dispense ->
+
+*/

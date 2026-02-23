@@ -1,0 +1,34 @@
+Template Method Pattern Idea: Report Generation System
+
+Goal
+Design a system to generate different types of reports (PDF, CSV, HTML) using a common processing pipeline.
+
+Scenario
+A reporting service always follows these steps:
+1. fetchData()
+2. validateData()
+3. formatReport()
+4. exportReport()
+5. sendNotification() (optional hook)
+
+Requirement
+- Create an abstract class `ReportGenerator` with a final template method `generateReport()`.
+- `generateReport()` should define the fixed algorithm order.
+- Common steps can have default implementation in base class.
+- `formatReport()` and `exportReport()` must be abstract and implemented by subclasses.
+- Add a hook method `shouldNotify()` (default false); if true, call `sendNotification()`.
+
+Concrete classes to implement
+- `PdfReportGenerator`
+- `CsvReportGenerator`
+- `HtmlReportGenerator`
+
+Main flow
+- Create one object of each generator type.
+- Call `generateReport()` for each.
+- Show that algorithm order is fixed but formatting/export behavior changes.
+
+Acceptance criteria
+- No duplicated pipeline logic in subclasses.
+- `generateReport()` cannot be overridden.
+- Adding a new report type should require only a new subclass.

@@ -1,0 +1,55 @@
+Chain of Responsibility Requirement Idea: Customer Support Ticket Escalation
+
+Goal
+Design a support ticket handling flow where each support level decides whether it can handle the request or pass it to the next handler.
+
+Scenario
+A ticket has:
+- ticketId
+- issueType (BILLING, TECHNICAL, ACCOUNT, SECURITY)
+- severity (LOW, MEDIUM, HIGH, CRITICAL)
+- description
+
+Support hierarchy:
+1. L1Support
+- Handles LOW severity general issues.
+- Escalates others.
+
+2. L2Support
+- Handles MEDIUM severity technical/account issues.
+- Escalates others.
+
+3. Supervisor
+- Handles HIGH severity (except security breach).
+- Escalates CRITICAL/security breach.
+
+4. SecurityTeam
+- Handles all SECURITY and CRITICAL security tickets.
+
+Requirements
+1. Create a handler interface/abstract class with:
+   - setNext(Handler next)
+   - handle(Ticket ticket)
+
+2. Each concrete handler must:
+   - Decide whether it can handle the ticket.
+   - If yes, process and print who handled it.
+   - If no, forward to next handler.
+
+3. If no handler can process a ticket:
+   - Print "No handler available for ticket <id>".
+
+4. Build chain in Main:
+- L1 -> L2 -> Supervisor -> SecurityTeam
+
+5. Demonstrate with sample tickets:
+- one handled by L1
+- one handled by L2
+- one handled by Supervisor
+- one handled by SecurityTeam
+- one unhandled case
+
+Acceptance Criteria
+- Client code sends request only to chain head.
+- No large if-else in Main for routing.
+- New handler can be added with minimal changes.

@@ -1,0 +1,49 @@
+Composite Pattern Requirement Idea: File System Explorer
+
+Goal
+Design a file-system model where files and folders are treated uniformly through a common interface.
+
+Scenario
+You need to represent:
+- Files (leaf nodes)
+- Folders (composite nodes)
+A folder can contain files and subfolders.
+Operations should work recursively on nested structures.
+
+Requirements
+1. Create a common component interface `FileSystemComponent` with:
+   - getName()
+   - showDetails(String indent)
+   - getSize()
+
+2. Create leaf class `FileItem`:
+   - stores file name and size
+   - `showDetails` prints file info
+   - `getSize` returns its own size
+
+3. Create composite class `FolderItem`:
+   - stores folder name and list of `FileSystemComponent`
+   - methods: add(component), remove(component)
+   - `showDetails` prints folder and recursively prints children
+   - `getSize` returns sum of child sizes
+
+4. Build a sample tree in Main:
+- root/
+  - docs/
+    - resume.pdf
+    - notes.txt
+  - photos/
+    - trip/
+      - img1.jpg
+      - img2.jpg
+  - todo.txt
+
+5. Demonstrate operations:
+- print full hierarchy
+- print total size of root
+- print total size of a nested folder
+
+Acceptance Criteria
+- Client uses only `FileSystemComponent` reference for both files/folders.
+- No type checks (`instanceof`) in client code.
+- Adding a new component type should not break existing traversal logic.

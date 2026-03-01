@@ -1,0 +1,44 @@
+Decorator Pattern Requirement Idea: Coffee Ordering System
+
+Goal
+Design a coffee billing system where add-ons are applied dynamically without changing base coffee classes.
+
+Scenario
+A cafe sells base drinks and optional add-ons.
+Users can combine multiple add-ons in any order.
+Final description and price should reflect all chosen add-ons.
+
+Requirements
+1. Create component interface `Coffee` with:
+   - String getDescription()
+   - double getCost()
+
+2. Create concrete base coffees:
+   - Espresso
+   - Cappuccino
+   - HouseBlend
+
+3. Create abstract decorator `CoffeeDecorator`:
+   - implements `Coffee`
+   - stores wrapped `Coffee` object
+
+4. Create concrete decorators (add-ons):
+   - Milk
+   - Sugar
+   - Whip
+   - Caramel
+Each decorator should:
+   - append its name to description
+   - add its own price to cost
+
+5. Main demo flow:
+- Order 1: Espresso + Milk + Sugar
+- Order 2: Cappuccino + Whip + Caramel + Milk
+- Order 3: HouseBlend (no add-on)
+Print description and total cost for each order.
+
+Acceptance Criteria
+- Add-ons are stackable at runtime.
+- No subclass explosion like `EspressoWithMilkAndSugar`.
+- Base coffee classes stay unchanged when new add-ons are introduced.
+- New decorator can be added with minimal changes.

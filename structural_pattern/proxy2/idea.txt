@@ -1,0 +1,44 @@
+Proxy Pattern Requirement Idea: Document Access Control
+
+Goal
+Design a document viewing system where access to sensitive documents is controlled through a proxy.
+
+Scenario
+Users request documents by ID. Some documents are public, some are confidential.
+Direct access to the real document service should be blocked.
+All requests must go through a proxy that performs checks before delegating.
+
+Requirements
+1. Create subject interface `DocumentService` with:
+   - String getDocument(String documentId, String userRole)
+
+2. Create real subject `RealDocumentService`:
+   - Stores document content in memory (Map)
+   - Returns content if called
+   - Does not perform access validation itself
+
+3. Create proxy `DocumentServiceProxy`:
+   - Implements `DocumentService`
+   - Holds reference to `RealDocumentService`
+   - Enforces access rules before forwarding call
+
+4. Access rules:
+- `PUBLIC_*` documents: accessible by all roles
+- `CONFIDENTIAL_*` documents: accessible only by `ADMIN` and `LEGAL`
+- Unauthorized access should return: "Access denied for <role> on <documentId>"
+
+5. Extra proxy responsibilities:
+- Add simple request logging (who requested what)
+- Add basic caching for successful public document reads
+
+6. Main demo flow:
+- Employee reads public doc (allowed)
+- Employee reads confidential doc (denied)
+- Admin reads confidential doc (allowed)
+- Repeat public read to show cache usage
+
+Acceptance Criteria
+- Client talks only to proxy, not directly to real service
+- Access logic is centralized in proxy
+- Real service remains focused on data retrieval
+- New validation rules can be added without changing client code

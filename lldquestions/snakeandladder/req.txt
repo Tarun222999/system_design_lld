@@ -1,0 +1,22 @@
+Requirements
+Multiple Players: The game supports two or more players.
+Board: The game uses a board with a configurable size (typically 1 to 100).
+Snakes and Ladders: The board contains snakes (which move players down) and ladders (which move players up).
+Dice Roll: Players roll a dice to determine their move.
+Turn Management: Players take turns in a round-robin fashion.
+Win Condition: The first player to reach the last cell wins.
+Input Validation: The game prevents invalid moves (e.g., moving beyond the last cell).
+Extensibility: Easy to add new features such as multiple dice, power-ups, or custom board sizes.
+
+
+
+Snake,Ladder,Player,Dice,
+Board int size,list snakes,laddetrs,Map<Player,int>playpos;
+getNextPosition()
+addSnake()
+addLadder()
+setPlayerPos()
+getPlayerPos()
+
+SnakeandLaffer
+board,list players,dice isGameover

@@ -1,0 +1,17 @@
+//
+size of board should be scalable
+there are standard game rules & should be further extensible
+allow on app notification for tic tac toe movies wins draws etc
+
+
+
+player (name,symbol)
+board (iscellempty,iscellvalid,placesymbol,getcell,display)
+game (board,player,obsevers,list of players(dequeue))
+rules (checkwin,checkdraw,isvalid) standard that implements
+
+
+observers 
+
+game should register observers
+give a way to play game

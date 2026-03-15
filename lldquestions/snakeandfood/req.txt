@@ -1,0 +1,40 @@
+players controls a snake moving on grid attempting to 
+eat food avoiding collision
+
+snake chose direction moves grows in len and new food item spawn 
+at random pos in grid
+
+game continues unitl snake crash or hit wall
+
+
+
+GameBoard,
+Snake(dequeue,positionMap(collisions),
+movement,
+collision detection
+growth
+)
+
+Food(
+    foodpositions,
+    currentFoodIndex
+
+    //manage food
+)
+
+
+SnakeGame{
+    GameBoard,
+    Snake,
+    Food,
+    score
+}
+
+
+Pair <row,col>
+
+
+startegy pattern for game movement
+factory pattern for food placement(normal,special,poisionous)
+singleton pattern for board
+
